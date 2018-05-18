@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ApiCallSample /> should match to snapshot when render default 1`] = `
+<div>
+  <button
+    onClick={[Function]}
+    type="button"
+  >
+    ApiCall!
+  </button>
+</div>
+`;

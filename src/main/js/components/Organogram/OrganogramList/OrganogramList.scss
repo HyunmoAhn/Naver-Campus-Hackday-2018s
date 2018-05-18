@@ -1,0 +1,51 @@
+.OrganogramList {
+  display: block;
+  height: 40px;
+  padding: .5rem 1rem;
+  margin-bottom: -1px;
+  width: 250px;
+  -ms-user-select: none;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+
+  &:hover {
+    .OrganogramList__edit-btn,
+    .OrganogramList__delete-btn {
+      display: inline-block;
+    }
+  }
+}
+
+.OrganogramList__dragging {
+  position: absolute;
+  top: -9999px;
+  opacity: 0.5;
+}
+
+.OrganogramList__spread-btn {
+  margin: 5px;
+  color: $color-gray500;
+}
+
+.OrganogramList__depth {
+  padding-left: 20px;
+}
+
+.OrganogramList__edit-btn,
+.OrganogramList__delete-btn {
+  float: right;
+  display: none;
+}
+
+.OrganogramList__estimate {
+  background-color: $color-light-yellow;
+  color: $color-light-yellow;
+  position: relative;
+  left: 20px;
+}
+
+.OrganogramList__estimate--depth {
+  left: 40px;
+}

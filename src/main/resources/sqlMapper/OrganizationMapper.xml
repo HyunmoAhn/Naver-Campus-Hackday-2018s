@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.organogram.OrganizationMapper">
+    <select id="selectAllOrgUnits" resultType="com.organogram.OrgUnit">
+      SELECT
+      org_id AS 'id',
+      org_pid AS 'parentId',
+      org_name AS 'name',
+      org_order AS 'order',
+      org_depth As 'depth'
+      FROM
+      TB_ORG
+      ORDER BY org_order
+    </select>
+
+  <select id="selectOpenIds" resultType="java.lang.Integer">
+    SELECT
+    org_id AS 'id'
+    FROM
+    TB_OPEN
+    WHERE user_id = #{userId}
+  </select>
+
+  <select id="selectOrgUnit" resultType="com.organogram.OrgUnit">
+    SELECT
+    org_id AS 'id',
+    org_pid AS 'parentId',
+    org_name AS 'name',
+    org_order AS 'order',
+    org_depth AS 'depth'
+    FROM TB_ORG
+    WHERE org_id = #{id}
+  </select>
+
+  <select id="selectLastOrgUnit" resultType="com.organogram.OrgUnit">
+    <![CDATA[
+    SELECT
+    org_id AS 'id',
+    org_pid AS 'parentId',
+    org_name AS 'name',
+    org_order AS 'order',
+    org_depth AS 'depth'
+    FROM TB_ORG
+    WHERE org_order > #{order}
+    AND org_depth <= #{depth}
+    ORDER BY org_order ASC
+    LIMIT 0, 1
+   ]]>
+  </select>
+
+  <select id="selectIdsByOrder" resultType="java.lang.Integer">
+    <![CDATA[
+    SELECT
+    org_id AS 'id'
+    FROM TB_ORG
+    WHERE org_order > #{startOrder}
+    AND org_order < #{endOrder}
+    ]]>
+  </select>
+
+  <delete id="deleteOrgs">
+    DELETE FROM TB_ORG
+    WHERE org_id IN (
+    <foreach collection="ids" item="id" separator=",">
+      #{id}
+    </foreach>
+    )
+  </delete>
+
+  <delete id="deleteOpens">
+    DELETE FROM TB_OPEN
+    WHERE org_id IN (
+    <foreach collection="ids" item="id" separator=",">
+      #{id}
+    </foreach>
+    )
+  </delete>
+
+  <select id="selectChildOrgUnits" resultType="com.organogram.OrgUnit">
+    SELECT
+    org_id AS 'id',
+    org_pid AS 'parentId',
+    org_name AS 'name',
+    org_order AS 'order',
+    org_depth AS 'depth'
+    FROM TB_ORG
+    WHERE org_pid = #{id}
+  </select>
+
+  <insert id="insertOpens">
+    INSERT INTO TB_OPEN VALUES (
+      #{userId},
+      #{orgId},
+      NOW()
+    )
+  </insert>
+
+  <delete id="deleteUserOpens">
+    DELETE FROM TB_OPEN
+    WHERE org_id IN (
+    <foreach collection="orgIds" item="orgId" separator=",">
+      #{orgId}
+    </foreach>
+    )
+  </delete>
+
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO TB_ORG(org_pid, org_name, org_order, org_depth)
+     (SELECT 0, #{name}, (MAX(org_order) + #{interval}), 1 FROM TB_ORG)
+  </insert>
+
+  <select id="selectPrevOrgUnit" resultType="com.organogram.OrgUnit">
+    <![CDATA[
+    SELECT
+    org_id AS 'id',
+    org_pid AS 'parentId',
+    org_name AS 'name',
+    org_order AS 'order',
+    org_depth AS 'depth'
+    FROM TB_ORG
+    WHERE org_order < #{order}
+    ORDER BY org_order DESC
+    LIMIT 0, 1
+    ]]>
+  </select>
+
+  <select id="selectNextOrgUnit" resultType="com.organogram.OrgUnit">
+    <![CDATA[
+    SELECT
+    org_id AS 'id',
+    org_pid AS 'parentId',
+    org_name AS 'name',
+    org_order AS 'order',
+    org_depth AS 'depth'
+    FROM TB_ORG
+    WHERE org_order > #{order}
+    ORDER BY org_order ASC
+    LIMIT 0, 1
+    ]]>
+  </select>
+
+  <update id="updateParentId">
+    UPDATE TB_ORG
+    SET org_pid = #{parentId}
+    WHERE org_id = #{id}
+  </update>
+
+  <update id="updateDepthAndOrder">
+    UPDATE TB_ORG
+    SET org_depth = org_depth + #{depthGap}, org_order = #{order}
+    WHERE org_id = #{id};
+  </update>
+</mapper>

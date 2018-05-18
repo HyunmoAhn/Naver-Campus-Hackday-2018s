@@ -1,0 +1,21 @@
+.Organogarm {
+  margin: auto;
+  width: 80%;
+}
+
+.Organogarm__title {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.Organogram__list {
+  overflow: scroll;
+  height: 250px;
+  width: 100%;
+  border: 1px solid $color-gray850;
+}
+
+.Organogram__Btn--add {
+  height: 25px;
+  margin-bottom: 5px;
+}

@@ -1,0 +1,32 @@
+.Confirm {
+  width: 300px;
+  padding: 25px;
+  overflow: auto;
+  text-align: center;
+}
+
+
+.Confirm__title {
+  text-align: center;
+  font-weight: 600;
+  color: $color-middle-gray-blue;
+}
+
+.Confirm__content {
+  font-weight: 400;
+  font-size: 13px;
+  color: $color-middle-gray-blue;
+  display: inline-block;
+  text-align: center;
+  line-height: 1.15;
+}
+
+.Confirm__btn {
+  display: flex;
+  justify-content: center;
+}
+
+.Confirm__btn-box {
+  display: flex;
+  justify-content: center;
+}

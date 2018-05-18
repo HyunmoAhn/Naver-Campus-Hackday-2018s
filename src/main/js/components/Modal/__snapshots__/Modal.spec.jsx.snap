@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Modal /> should match to snapshot when exist modalType 1`] = `
+<Modal
+  ariaHideApp={false}
+  bodyOpenClassName="ReactModal__Body--open"
+  className="Modal__container"
+  closeTimeoutMS={0}
+  contentLabel="Modal"
+  isOpen={true}
+  overlayClassName="Modal__overlay"
+  parentSelector={[Function]}
+  portalClassName="ReactModalPortal"
+  shouldCloseOnEsc={true}
+  shouldCloseOnOverlayClick={true}
+  shouldFocusAfterRender={true}
+  shouldReturnFocusAfterClose={true}
+>
+  <Confirm
+    cancelText="Cancel"
+    confirmText="OK"
+    content=""
+    onConfirm={[Function]}
+    onModalClose={[Function]}
+    title=""
+  />
+</Modal>
+`;
+
+exports[`<Modal /> should match to snapshot when render default 1`] = `""`;

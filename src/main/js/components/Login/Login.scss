@@ -1,0 +1,26 @@
+.Login__user-set {
+  margin: auto;
+  width: 80%;
+  overflow-y: scroll;
+  height: 500px;
+}
+
+.Login__user-title {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.Login__user {
+  border: 1px solid rgba(0,0,0,.125);
+  display: block;
+  line-height: 1.5;
+  height: 50px;
+  position: relative;
+  padding: .75rem 1.25rem;
+  margin-bottom: -1px;
+
+  &:hover {
+    color: $color-white;
+    background-color: $color-blue;
+  }
+}

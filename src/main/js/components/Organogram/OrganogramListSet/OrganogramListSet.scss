@@ -1,0 +1,9 @@
+.OrganogramListSet__depth {
+  padding-left: 20px;
+}
+
+.OrganogramListSet__dragging {
+  position: absolute;
+  top: -999px;
+  opacity: 0.5;
+}

@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Alert /> should match to snapshot when render default 1`] = `
+<div
+  className="Alert"
+>
+  <h6
+    className="Alert__title space-2x"
+  >
+    <strong />
+  </h6>
+  <span
+    className="Alert__content space-4x"
+  >
+    <span
+      key="0"
+    >
+      <br />
+    </span>
+  </span>
+  <div
+    className="Alert__btn-box"
+  >
+    <button
+      className="Btn Btn--primary Btn--sm"
+      onClick={[Function]}
+      type="button"
+    >
+      OK
+    </button>
+  </div>
+</div>
+`;
